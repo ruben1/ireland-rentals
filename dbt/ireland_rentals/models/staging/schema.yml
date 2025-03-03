@@ -1,0 +1,19 @@
+version: 2
+
+sources:
+  - name: staging
+    database: "{{ env_var('DBT_DATABASE', 'ireland-rentals') }}"
+    schema: "{{ env_var('DBT_SCHEMA', 'public') }}"
+      # loaded_at_field: record_loaded_at
+    tables:
+      - name: rentals
+      - name: raw_properties
+         # freshness:
+           # error_after: {count: 6, period: hour}
+
+models:
+  - name: staging_rentals
+    description: some description
+    columns:
+      - name: eircode
+        description: eircode
